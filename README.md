@@ -13,4 +13,4 @@ Activate and `pip install` the requirements.
     source env/bin/activate
     pip install -r requirements.txt
 
-There is a separate project for each example code - URLDispatch, Traversal, Hybird.
+There is a separate project for each example code - URLDispatch & Traversal.
