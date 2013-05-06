@@ -1,0 +1,2 @@
+# Requirements built in a minimalistic manner
+pyramid==1.4.1
