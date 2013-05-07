@@ -14,3 +14,15 @@ Activate and `pip install` the requirements.
     pip install -r requirements.txt
 
 There is a separate project for each example code - URLDispatch & Traversal.
+
+Prepare the source for development.
+
+    python setup.py develop
+
+This will update the egg info and pull in packages.
+
+Run the server with reload which is helpful.
+
+    pserve development.ini --reload
+
+And visit your local host. http://localhost:6543/
