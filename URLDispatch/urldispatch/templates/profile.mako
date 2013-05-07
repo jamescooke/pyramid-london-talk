@@ -5,7 +5,7 @@
         <p>My pages:</p>
         <ul>
         % for page in pages:
-            <li><a href="${request.route_path('page', username=user.username, page_title=page.title.lower())}">${page.title}</a></li>
+            <li><a href="${page.view_link(request)}">${page.title}</a></li>
         % endfor
         </ul>
     </body>

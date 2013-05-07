@@ -4,7 +4,7 @@
         <p>We have lots of users for you to look at:</p>
         <ul>
             % for u in users:
-                <li><a href="xxx">${u.username}</a></li>
+                <li><a href="${u.view_link(request)}">${u.username}</a></li>
             % endfor
         </ul>
     </body>

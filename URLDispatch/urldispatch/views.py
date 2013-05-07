@@ -21,7 +21,6 @@ def home_view(request):
     }
 
 
-# @view_config(route_name='profile', renderer='profile.mako')
 @view_config(context=User, renderer='profile.mako')
 def profile_view(request):
     """Show single user's profile with their pages."""
@@ -35,22 +34,9 @@ def profile_view(request):
     }
 
 
-# @view_config(route_name='page', renderer='page.mako')
 @view_config(context=Page, renderer='page.mako')
 def page_view(request):
     """Show a single page belonging to a user."""
-
-    # Pull in the vars from the matchdict
-    # username = request.matchdict['username']
-    # page_title = request.matchdict['page_title']
-
-    # Load the object from the matchdict
-
-    # SQLAlchemy:
-    # page = Session.query(Page).filter(Page.user.username==username).filter(Page.title
-
-    # user = make_fake_db()['users'][username]
-    # page = user.pages[page_title]
 
     page = request.context
     user = page.user

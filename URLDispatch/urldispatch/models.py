@@ -25,6 +25,10 @@ class User:
         # With our simulation we load by index:
         return self.pages[page_title]
 
+    def view_link(self, request):
+        """URL to view user's profile."""
+        return request.application_url + '/' + self.username
+
 
 class Page:
     """A page created by a user"""
@@ -43,3 +47,7 @@ class Page:
         """Better interactive prompt inspection for live demo"""
         params = (self.title, self.user.username)
         return u'<SubPage title="%s" owner="%s">' % params
+
+    def view_link(self, request):
+        """URL to view single page."""
+        return self.user.view_link(request) + '/' + self.title.lower()
