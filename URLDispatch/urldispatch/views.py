@@ -1,6 +1,7 @@
 from pyramid.view import view_config
 
 from . import make_fake_db
+from .models import User, Page
 
 """Views below use the fake database, but SQLAlchemy example are included."""
 
@@ -20,19 +21,12 @@ def home_view(request):
     }
 
 
-@view_config(route_name='profile', renderer='profile.mako')
+# @view_config(route_name='profile', renderer='profile.mako')
+@view_config(context=User, renderer='profile.mako')
 def profile_view(request):
     """Show single user's profile with their pages."""
 
-    # URLDispatch means that we need to load the target object...
-    # username comes from matchdict...
-    username = request.matchdict['username']
-
-    # SQLAlchemy:
-    # user = Session.query(User).filter(User.username=username).first()
-
-    # Simulation:
-    user = make_fake_db()['users'][username]
+    user = request.context
     pages = user.pages.itervalues()
 
     return {
@@ -41,21 +35,25 @@ def profile_view(request):
     }
 
 
-@view_config(route_name='page', renderer='page.mako')
+# @view_config(route_name='page', renderer='page.mako')
+@view_config(context=Page, renderer='page.mako')
 def page_view(request):
     """Show a single page belonging to a user."""
 
     # Pull in the vars from the matchdict
-    username = request.matchdict['username']
-    page_title = request.matchdict['page_title']
+    # username = request.matchdict['username']
+    # page_title = request.matchdict['page_title']
 
     # Load the object from the matchdict
 
     # SQLAlchemy:
     # page = Session.query(Page).filter(Page.user.username==username).filter(Page.title
 
-    user = make_fake_db()['users'][username]
-    page = user.pages[page_title]
+    # user = make_fake_db()['users'][username]
+    # page = user.pages[page_title]
+
+    page = request.context
+    user = page.user
 
     return {
         'user': user,
