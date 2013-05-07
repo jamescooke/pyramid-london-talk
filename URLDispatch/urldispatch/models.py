@@ -19,6 +19,12 @@ class User:
         """Better interactive prompt inspection for live demo"""
         return u'<User username="%s">' % self.username
 
+    def __getitem__(self, page_title):
+        """For traversal, allow lookup of pages from user."""
+        # Usually in SQLAlchemy, we would filter...
+        # With our simulation we load by index:
+        return self.pages[page_title]
+
 
 class Page:
     """A page created by a user"""

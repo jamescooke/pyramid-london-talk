@@ -9,15 +9,13 @@ class Root(dict):
         pass
 
     def __getitem__(self, username):
-        # URLDispatch means that we need to load the target object...
-        # username comes from matchdict...
-        # username = request.matchdict['username']
-
+        """Allow Root to lookup users underneath it."""
         # SQLAlchemy:
         # user = Session.query(User).filter(User.username=username).first()
 
         # Simulation:
         user = make_fake_db()['users'][username]
+
         return user
 
 
@@ -25,15 +23,6 @@ def main(global_config, **settings):
     """This function returns a Pyramid WSGI application."""
     config = Configurator(settings=settings, root_factory=Root)
     config.add_static_view('static', 'static', cache_max_age=3600)
-
-    # Route for home
-    config.add_route('home', '/')
-
-    # Route for user profiles
-    # config.add_route('profile', '/{username}')
-
-    # Route for users' pages
-    # config.add_route('page', '/{username}/{page_title}')
 
     config.scan()
     return config.make_wsgi_app()

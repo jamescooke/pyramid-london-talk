@@ -1,12 +1,12 @@
 from pyramid.view import view_config
 
-from . import make_fake_db
+from . import make_fake_db, Root
 from .models import User, Page
 
 """Views below use the fake database, but SQLAlchemy example are included."""
 
 
-@view_config(route_name='home', renderer='home.mako')
+@view_config(context=Root, renderer='home.mako')
 def home_view(request):
     """Show PyramidPress home page with a list of users."""
 
