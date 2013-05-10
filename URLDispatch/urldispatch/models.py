@@ -1,6 +1,6 @@
 """Models for our PyramidPress demo.
 
-Instead of being 'complicated' and using persistence, instaces of these classes
+Instead of being 'complicated' and using persistence, instances of these classes
 are created at run-time for simple demonstration purposes. - see __init__
 
 """
